@@ -1,0 +1,20 @@
+{
+  "name": "nodeblocks-cloud-order-custom-adapter-sample",
+  "version": "1.0.0",
+  "description": "Nodeblocks Order Service Custom Adapter for NBC",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "dev": "nbc adapter dev -e tsc -i dist"
+  },
+  "author": "Basal Inc.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@basaldev/blocks-order-service": "2.2.1",
+    "@basaldev/blocks-backend-sdk": "^2.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

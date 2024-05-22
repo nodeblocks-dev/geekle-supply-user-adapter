@@ -1,0 +1,21 @@
+{
+  "name": "nodeblocks-cloud-organization-custom-adapter-sample",
+  "version": "1.0.0",
+  "description": "Nodeblocks Organization Service Custom Adapter for NBC",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "tsc",
+    "dev": "nbc adapter dev -e tsc -i dist"
+  },
+  "author": "Basal Inc.",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@basaldev/blocks-backend-sdk": "^2.9.0",
+    "@basaldev/blocks-organization-service": "2.1.2",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
