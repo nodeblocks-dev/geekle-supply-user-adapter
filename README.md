@@ -5,7 +5,7 @@ The custom adapters allow us to extend the functionality of the Nodeblocks Servi
 
 ## Create a repository for the custom adapter
 
-First, create a new repository on GitHub for the custom adapter and place the necessary files below.
+First, create a new repository in GitHub for the custom adapter and place the necessary files below.
 
 ```bash
 .
@@ -49,7 +49,11 @@ graph TD
 ## How to add additional adapter configs
 
 You can add additional configs for the custom adapter in `nbc.adapter.json`.
-Type of config value can be one of the following:
+The config values defined in this file are supposed to be shown on the NBC dashboard, under the service configs.
+
+<img src="./docs/configs.jpg">
+
+Type of the config value can be one of the following:
 
 - string
 - number
@@ -79,7 +83,7 @@ Type of config value can be one of the following:
 }
 ```
 
-If you don't need any additional configs, you can leave the `configs` field empty.
+You need to have this file even though you don't need any additional configs. In that case, you can leave the `configs` field an empty array.
 
 ```json
 {
@@ -115,8 +119,8 @@ You need to add `build` script in the `package.json` to build the TypeScript cod
 
 ## How to develop the custom adapter locally while previewing the changes
 
-Run the dev server by Nodeblocks CLI to develop the custom adapter locally.
-At this first time you run the dev server, the CLI asks you to update the `.env.<service>` file.
+Run the dev server by Nodeblocks Cloud SDK to develop the custom adapter locally.
+At the first time you run the dev server, the CLI asks you to create the `.env.<service>` and `nbc.sdk.json` file.
 The file is inside the working directory.
 
 ```bash
