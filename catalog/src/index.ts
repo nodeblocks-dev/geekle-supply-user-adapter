@@ -65,7 +65,7 @@ export function adapterCreated(adapter: defaultAdapter.CatalogDefaultAdapter): d
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
    * 
    * @example
-   * updatedAdapter = adk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
+   * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
    *   return { status: 200 };
    * });
