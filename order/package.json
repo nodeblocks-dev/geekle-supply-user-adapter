@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc",
-    "dev": "nbc adapter dev -e tsc -i dist"
+    "start": "nbc adapter start",
+    "dev": "nbc adapter dev -i dist -e tsc"
   },
   "author": "Basal Inc.",
   "license": "UNLICENSED",
@@ -15,6 +16,7 @@
     "@basaldev/blocks-backend-sdk": "^2.9.0"
   },
   "devDependencies": {
+    "@basaldev/nodeblocks-cloud-sdk": "^0.2.2",
     "typescript": "^5.4.5"
   }
 }
