@@ -3,11 +3,12 @@
 This repository has templates for creating the custom adapter for Nodeblocks Service for Nodeblocks Cloud (NBC).
 The custom adapters allow us to extend the functionality of the Nodeblocks Service.
 
-## Setup
+## ▶ Setup
 
 ### Create a repository for the custom adapter
 
-First, create a new repository in GitHub for the custom adapter and place the necessary files below. It is recommended that you copy the files from the desired service template folder.
+First, create a new repository in GitHub for the custom adapter and place the necessary files below. 
+It is recommended that you copy the files from the desired service template folder.
 
 ```bash
 .
@@ -27,7 +28,6 @@ We also suggest using `.gitignore`.
 You need to provide the `name` and `main` fields in `package.json` at least so that NBC can recognize the custom adapter as an npm package.
 
 e.g:
-
 ```json
 {
   "name": "auth-custom-adapter",
@@ -35,7 +35,7 @@ e.g:
 }
 ```
 
-* Note: You need to use the package manager **npm** *
+*Note: You need to use the package manager **npm*** 
 
 ### Use TypeScript in the custom adapter
 
@@ -59,9 +59,11 @@ You need the `build` script in the `package.json` to build the TypeScript code.
 }
 ```
 
-You also need to confirm the `name` in `package.json` to aligns with the build destination (`"outDir"`) in `tsconfig.json`.
+You also need to confirm the `name` in `package.json` aligns with the build destination (`"outDir"`) in `tsconfig.json`.
 ```json 
-{  "main": "dist/index.js" } 
+{  
+  "main": "dist/index.js" 
+} 
 ``` 
 
 ### How to develop the custom adapter locally while previewing the changes 
@@ -80,7 +82,7 @@ npm run dev
 If you make changes to the configs in `nbc.adapter.json`, please also add them to `.env.<service>`.
 
 
-## Customization
+## ▶ Customization
 
 ### How to customize the adapter
 
