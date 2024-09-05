@@ -3,20 +3,30 @@
 This repository has templates for creating the custom adapter for Nodeblocks Service for Nodeblocks Cloud (NBC).
 The custom adapters allow us to extend the functionality of the Nodeblocks Service.
 
-## Create a repository for the custom adapter
+## Setup
 
-First, create a new repository in GitHub for the custom adapter and place the necessary files below.
+### Create a repository for the custom adapter
+
+First, create a new repository in GitHub for the custom adapter and place the necessary files below. It is recommended that you copy the files from the desired service template folder.
 
 ```bash
 .
-├── package.json
-├── package-lock.json
-├── nbc.adapter.json   # The custom adapter manifest used to define the adapter configs on the NBC dashboard
 └── src
     └── index.js       # The main entry point of the custom adapter
+├── .npmrc
+├── nbc.adapter.json   # The custom adapter manifest used to define the adapter configs on the NBC dashboard
+├── package-lock.json
+├── package.json
+
 ```
 
+Create a `.env` file and add your `BASALDEV_AUTH_TOKEN`.
+We also suggest using `.gitignore`.
+
+
 You need to provide the `name` and `main` fields in `package.json` at least so that NBC can recognize the custom adapter as an npm package.
+
+e.g:
 
 ```json
 {
@@ -25,10 +35,57 @@ You need to provide the `name` and `main` fields in `package.json` at least so t
 }
 ```
 
-## How to customize the adapter
+* Note: You need to use the package manager **npm** *
+
+### Use TypeScript in the custom adapter
+
+You can use TypeScript in the custom adapter.
+Copy the template folder for each service and modify the code as needed.
+In addition to the above (replace src/index.js with src/index.ts), you will also need:
+
+```bash
+.
+├── tsconfig.json
+
+```
+
+You need the `build` script in the `package.json` to build the TypeScript code.
+
+```json
+{
+  "scripts": {
+    "build": "tsc"
+  }
+}
+```
+
+You also need to confirm the `name` in `package.json` to aligns with the build destination (`"outDir"`) in `tsconfig.json`.
+```json 
+{  "main": "dist/index.js" } 
+``` 
+
+### How to develop the custom adapter locally while previewing the changes 
+
+Run `npm install`.
+
+Run the dev server by Nodeblocks Cloud SDK to develop the custom adapter locally.
+At the first time you run the dev server, the CLI asks you to create the `.env.<service>` and `nbc.sdk.json` files.
+These files are inside the working directory. Update the values in `.env.<service>` accordingly. 
+
+```bash
+# Run nbc adapter dev
+npm run dev
+```
+
+If you make changes to the configs in `nbc.adapter.json`, please also add them to `.env.<service>`.
+
+
+## Customization
+
+### How to customize the adapter
 
 You can customize the behavior of the default adapter by using NBC service lifecycle hooks.
-In the entry file (index.js), you can define the following functions as needed.
+In the main file to be built (index.ts), you can define the following functions as needed. (If using js, this will be your index.js entry file instead.)
 
 - `beforeCreateAdapter`: Called before the adapter is created. This hook can be used to customize the adapter configs.
 - `adapterCreated`: Called after the adapter is created. This hook can be used to customize the adapter instance.
@@ -46,7 +103,7 @@ graph TD
   E --> F[serviceStarted]
 ```
 
-## How to add additional adapter configs
+### How to add additional adapter configs
 
 You can add additional configs for the custom adapter in `nbc.adapter.json`.
 The config values defined in this file are supposed to be shown on the NBC dashboard, under the service configs.
@@ -95,7 +152,7 @@ You need to have this file even though you don't need any additional configs. In
 ```
 
 
-## How to access the adapter configs in the custom adapter
+### How to access the adapter configs in the custom adapter
 
 You can access the adapter configs through the `process.env` object in the custom adapter code.
 
@@ -103,27 +160,6 @@ You can access the adapter configs through the `process.env` object in the custo
 const foo = process.env.ADAPTER_CUSTOM_FOO;
 ```
 
-## Use TypeScript in the custom adapter
+### Deploy
 
-You can use TypeScript in the custom adapter.
-Copy the template folder for each service and modify the code as needed.
-You need to add `build` script in the `package.json` to build the TypeScript code.
-
-```json
-{
-  "scripts": {
-    "build": "tsc"
-  }
-}
-```
-
-## How to develop the custom adapter locally while previewing the changes
-
-Run the dev server by Nodeblocks Cloud SDK to develop the custom adapter locally.
-At the first time you run the dev server, the CLI asks you to create the `.env.<service>` and `nbc.sdk.json` file.
-The file is inside the working directory.
-
-```bash
-# Run nbc adapter dev
-npm run dev
-```
+Once you are happy with your custom adapter, on the NBC editor page, update the adapter setting to 'custom' for your chosen service, then update any necessary configs and re-deploy.
