@@ -105,6 +105,8 @@ graph TD
   E --> F[serviceStarted]
 ```
 
+For more specific guidance on lifecycle hooks, please refer to the `./<service>/src/index.ts` file of this template repo.
+
 ### How to add additional adapter configs
 
 You can add additional configs for the custom adapter in `nbc.adapter.json`.
