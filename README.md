@@ -5,6 +5,10 @@ The custom adapters allow us to extend the functionality of the Nodeblocks Servi
 
 ## ▶ Setup
 
+### Prerequisite
+
+You will need to have Node.js and npm correctly set up.
+
 ### Create a repository for the custom adapter
 
 First, create a new repository in GitHub for the custom adapter and place the necessary files below. 
