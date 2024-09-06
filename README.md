@@ -5,7 +5,7 @@ The custom adapters allow us to extend the functionality of the Nodeblocks Servi
 
 ## ▶ Setup
 
-### Prerequisite
+### Prerequisites
 
 You will need to have Node.js and npm correctly set up.
 
@@ -94,6 +94,7 @@ Run `npm install`.
 Run the dev server by Nodeblocks Cloud SDK to develop the custom adapter locally.
 At the first time you run the dev server, the CLI asks you to create the `.env.<service>` and `nbc.sdk.json` files.
 These files are inside the working directory. Update the values in `.env.<service>` accordingly. 
+Now when you run the command, it will actually start the dev server.
 
 ```bash
 # Run nbc adapter dev
