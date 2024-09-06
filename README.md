@@ -9,6 +9,12 @@ The custom adapters allow us to extend the functionality of the Nodeblocks Servi
 
 You will need to have Node.js and npm correctly set up.
 
+You will also need to add the NPMJS private token for nodeblocks to your local environment - `.zshrc` `.bashrc` etc.
+
+```sh
+export BASALDEV_AUTH_TOKEN=__INSERT_YOUR_TOKEN_HERE__
+```
+
 ### Create a repository for the custom adapter
 
 First, create a new repository in GitHub for the custom adapter and place the necessary files below. 
@@ -24,10 +30,6 @@ It is recommended that you copy the files from the desired service template fold
 ├── package.json
 
 ```
-
-Create a `.env` file and add your `BASALDEV_AUTH_TOKEN`.
-We also suggest using `.gitignore`.
-
 
 You need to provide the `name` and `main` fields in `package.json` at least so that NBC can recognize the custom adapter as an npm package.
 
@@ -59,7 +61,6 @@ Your working directory should now look like this:
 .
 └── src
     └── index.ts       # The main entry point of the custom adapter
-├── .env
 ├── .gitignore
 ├── .npmrc
 ├── nbc.adapter.json   # The custom adapter manifest used to define the adapter configs on the NBC dashboard
@@ -111,7 +112,6 @@ Your working directory should now look like this, and you are ready to begin cus
     └── ...
 └── src
     └── index.ts       # The main entry point of the custom adapter
-├── .env
 ├── .env.<service>
 ├── .gitignore
 ├── .npmrc
