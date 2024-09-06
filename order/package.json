@@ -16,7 +16,7 @@
     "@basaldev/blocks-backend-sdk": "^2.9.0"
   },
   "devDependencies": {
-    "@basaldev/nodeblocks-cloud-sdk": "^0.2.2",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
     "typescript": "^5.4.5"
   }
 }
