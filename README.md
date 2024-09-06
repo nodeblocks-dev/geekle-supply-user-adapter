@@ -41,13 +41,30 @@ e.g:
 
 You can use TypeScript in the custom adapter.
 Copy the template folder for each service and modify the code as needed.
-In addition to the above (replace src/index.js with src/index.ts), you will also need:
+In addition to the above (replace `src/index.js` with `src/index.ts`), you will also need:
 
 ```bash
 .
 ├── tsconfig.json
 
 ```
+
+Your working directory should now look like this:
+
+```bash
+.
+└── src
+    └── index.ts       # The main entry point of the custom adapter
+├── .env
+├── .gitignore
+├── .npmrc
+├── nbc.adapter.json   # The custom adapter manifest used to define the adapter configs on the NBC dashboard
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+
+```
+
 
 You need the `build` script in the `package.json` to build the TypeScript code.
 
@@ -80,6 +97,26 @@ npm run dev
 ```
 
 If you make changes to the configs in `nbc.adapter.json`, please also add them to `.env.<service>`.
+
+Your working directory should now look like this, and you are ready to begin customizing your adapter.
+
+```bash
+.
+└── node_modules
+    └── ...
+└── src
+    └── index.ts       # The main entry point of the custom adapter
+├── .env
+├── .env.<service>
+├── .gitignore
+├── .npmrc
+├── nbc.adapter.json   # The custom adapter manifest used to define the adapter configs on the NBC dashboard
+├── nbc.sdk.json
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+
+```
 
 
 ## ▶ Customization
