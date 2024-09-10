@@ -13,7 +13,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@basaldev/blocks-backend-sdk": "^3.3.0",
-    "@basaldev/blocks-organization-service": "2.1.2"
+    "@basaldev/blocks-organization-service": "^3.0.2"
   },
   "devDependencies": {
     "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",

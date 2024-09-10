@@ -12,7 +12,7 @@
   "author": "Basal Inc.",
   "license": "UNLICENSED",
   "dependencies": {
-    "@basaldev/blocks-auth-service": "4.0.1",
+    "@basaldev/blocks-auth-service": "^4.3.1",
     "@basaldev/blocks-backend-sdk": "^3.3.0"
   },
   "devDependencies": {
