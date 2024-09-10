@@ -12,8 +12,8 @@
   "author": "Basal Inc.",
   "license": "UNLICENSED",
   "dependencies": {
-    "@basaldev/blocks-order-service": "2.2.1",
-    "@basaldev/blocks-backend-sdk": "^2.9.0"
+    "@basaldev/blocks-backend-sdk": "^3.3.0",
+    "@basaldev/blocks-order-service": "2.2.1"
   },
   "devDependencies": {
     "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
