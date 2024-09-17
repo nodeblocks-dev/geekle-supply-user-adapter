@@ -59,7 +59,7 @@ export BASALDEV_AUTH_TOKEN=__INSERT_YOUR_TOKEN_HERE__
 
 ### Create a new repository for the custom adapter
 
-First, create a new repository in GitHub for the custom adapter by the `Use this template" button on this repository (See [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template)).
+First, create a new repository in GitHub for the custom adapter by the `Use this template` button on this repository (See [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template)).
 
 ### Clone the repository
 
@@ -67,7 +67,7 @@ After creating a repository, clone the repository to your machine
 
 ### Select the template for the target Block service
 
-Open the cloned repository and in terminal, run `./setup.sh` to setup the template for the target Block service.
+Open the cloned repository and in the terminal, run `./setup.sh` to setup the template for the target Block service.
 
 ```bash
 ./setup.sh
@@ -131,7 +131,7 @@ npm run dev
 
 ### Environment variables
 
-When you run the command above at the first time, the command creates the `.env.<service>` for you inside the folder. This env file contains Block service default configs and the adapter configs defined in `nbc.adapter.json`. (See [Adapter configs](#adapter-configs)). 
+When you run the command above at the first time, the command creates the `.env.<service>` for you inside the folder. This env file contains the Block service default configs and the adapter configs defined in `nbc.adapter.json`. (See [Adapter configs](#adapter-configs)). 
 
 ```bash
 # Configs for Block service (prefix SERVICE_)
@@ -147,8 +147,8 @@ You need this file to run the service locally. You can update it as needed. For 
 
 ### NBC service hooks
 
-**NBC service hooks** lets you customize the behavior of the default adapter of each [Block microservice](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/microservices). Depending on what type of customization you need, you can use the appropriate hook with your custom code.
-Before going deeper, make sure you already understand the basic knowledge of how to customize the adapter [here](https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters)
+**NBC service hooks** let you customize the behavior of the default adapter of each [Block microservice](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/microservices). Depending on what type of customization you need, you can use the appropriate hook with your custom code.
+Before going deeper, make sure you already understand the basic knowledge of how to customize the adapter [here](https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters).
 
 In the main file to be built (index.ts), you can define the following functions as needed.
 
