@@ -239,12 +239,10 @@ const foo = process.env.ADAPTER_CUSTOM_FOO;
 
 NBC runs the `build` script from `package.json` to build the code when deploying the Block service with your custom adapter.
 
+As default, the template has `tsc` which compiles your code in TypeScript. You can customize it as you need and remove it if you don't need the build process, for example in the case of using JavaScript. Run `npm run build` to check if the build runs properly in your local environment.
+
 ```bash
 {
   "build": "tsc",
 }
 ```
-
-As default, the template has `tsc` which compiles your code in TypeScript. You can customize it as you need and remove it if you don't need the build process, for example in the case of using JavaScript.
-
-Run `npm run build` to check if the build runs properly in your local environment.
