@@ -1,7 +1,7 @@
 {
-  "name": "nodeblocks-cloud-auth-custom-adapter-sample",
+  "name": "nodeblocks-cloud-chat-custom-adapter-sample",
   "version": "1.0.0",
-  "description": "Nodeblocks Auth Service Custom Adapter for NBC",
+  "description": "Nodeblocks Chat Service Custom Adapter for NBC",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist",
@@ -12,11 +12,11 @@
   "author": "Basal Inc.",
   "license": "UNLICENSED",
   "dependencies": {
-    "@basaldev/blocks-auth-service": "4.0.1",
-    "@basaldev/blocks-backend-sdk": "^2.9.0"
+    "@basaldev/blocks-backend-sdk": "^2.9.0",
+    "@basaldev/blocks-messaging-service": "3.1.2"
   },
   "devDependencies": {
-    "@basaldev/nodeblocks-cloud-sdk": "^0.2.2",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
     "typescript": "^5.4.5"
   }
 }

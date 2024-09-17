@@ -1,7 +1,7 @@
 {
-  "name": "nodeblocks-cloud-user-custom-adapter-sample",
+  "name": "nodeblocks-cloud-organization-custom-adapter-sample",
   "version": "1.0.0",
-  "description": "Nodeblocks User Service Custom Adapter for NBC",
+  "description": "Nodeblocks Organization Service Custom Adapter for NBC",
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf dist",
@@ -13,10 +13,10 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@basaldev/blocks-backend-sdk": "^2.9.0",
-    "@basaldev/blocks-user-service": "2.3.0"
+    "@basaldev/blocks-organization-service": "2.1.2"
   },
   "devDependencies": {
-    "@basaldev/nodeblocks-cloud-sdk": "^0.2.2",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
     "typescript": "^5.4.5"
   }
 }
