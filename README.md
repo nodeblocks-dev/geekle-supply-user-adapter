@@ -15,7 +15,7 @@
 
 ### What is Nodeblocks
 
-[Nodeblocks](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/introduction) is a low cost application development platform, created to speed up Back-end development of Web and Mobile platforms. By providing prefabricated services, called **Blocks**, you can focus your development resources solely on your core business logic and use cases, with a high level of freedom in terms of architecture and integration.
+[Nodeblocks](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/introduction) is a low cost application development platform, created to speed up backend development of Web and Mobile platforms. By providing prefabricated services, called **Blocks**, you can focus your development resources solely on your core business logic and use cases, with a high level of freedom in terms of architecture and integration.
 
 ### What is Nodeblocks Cloud (NBC)
 
@@ -25,7 +25,7 @@
 
 The custom adapter extends the functionality of Nodeblocks services. Each [Block](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/introduction#blocks) service has the default behavior implemented as an adapter called the **Default Adapter**. The Default Adapter is developed by the Nodeblocks team and is provided as part of the library.
 
-The custom adapter is a user-defined adapter that can be used to customize the behavior of Block. It can be used to override the default behavior of the service, add new features, or integrate with external services.
+The custom adapter is a user-defined adapter that can be used to customize the behavior of each Block. It can be used to override the default behavior of the service, add new features, or integrate with external services.
 
 [About Adapters](https://docs.nodeblocks.dev/docs/what-is-nodeblocks/introduction#adapters)
 
@@ -59,7 +59,7 @@ export BASALDEV_AUTH_TOKEN=__INSERT_YOUR_TOKEN_HERE__
 
 ### Create a new repository for the custom adapter
 
-First, create a new repository in GitHub for the custom adapter by `Use this template" button on this repository (See [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template)).
+First, create a new repository in GitHub for the custom adapter by the `Use this template" button on this repository (See [Creating a repository from a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template)).
 
 ### Clone the repository
 
@@ -67,7 +67,7 @@ After creating a repository, clone the repository to your machine
 
 ### Select the template for the target Block service
 
-Open the repository cloned by terminal and run `./setup.sh` to setup the template for the target Block service.
+Open the cloned repository and in terminal, run `./setup.sh` to setup the template for the target Block service.
 
 ```bash
 ./setup.sh
@@ -119,7 +119,7 @@ npm ci
 
 ### Language
 
-You can develop your custom adapter in either TypeScript (as in the template) or Node.js (JavaScript). The template use TypeScript but you switch to raw Node.js by changing `src/index.ts` to `src/index.js`.
+You can develop your custom adapter in either TypeScript (as in the template) or Node.js (JavaScript). The template uses TypeScript but you can switch to raw Node.js by changing `src/index.ts` to `src/index.js`.
 
 ### Run the dev server
 
@@ -178,7 +178,7 @@ Once you are happy with your custom adapter, push the code to your Github reposi
 
 ### Adapter configs
 
-The adapter config file `nbc.adapter.json` defines the environment variables passed into Block service and the custom adapter.
+The adapter config file `nbc.adapter.json` defines the environment variables passed into the Block service and the custom adapter.
 NBC uses this file to show the adapter configs on the dashboard so that you can configure the custom adapter.
 
 <img src="./docs/configs.jpg">
@@ -215,7 +215,7 @@ The config value type can be one of the following:
 }
 ```
 
-You need to have this file even though you don't need any configs. In that case, you can leave the `configs` field an empty array.
+You need to have this file even if you don't need any configs. In that case, you can leave the `configs` field as an empty array.
 
 ```json
 {
@@ -237,7 +237,7 @@ const foo = process.env.ADAPTER_CUSTOM_FOO;
 
 ### Build code by NBC
 
-NBC runs the `build` script from `package.json` build the code when deploying the Block service with your custom adapter.
+NBC runs the `build` script from `package.json` to build the code when deploying the Block service with your custom adapter.
 
 ```bash
 {
@@ -245,6 +245,6 @@ NBC runs the `build` script from `package.json` build the code when deploying th
 }
 ```
 
-As default, the template has `tsc` which compile your code in TypeScript. You can customize it as you need and remove it if you don't need the build process, for example in the case of using JavaScript.
+As default, the template has `tsc` which compiles your code in TypeScript. You can customize it as you need and remove it if you don't need the build process, for example in the case of using JavaScript.
 
 Run `npm run build` to check if the build runs properly in your local environment.
