@@ -26,4 +26,4 @@ echo "Target service: ${target_service}"
 cp -r .templates/${target_service}/* .templates/${target_service}/.[!.]* .
 
 echo "✅ Setup completed!"
-echo "Please delete the `.templates` folder and `setup.sh` if you don't need it anymore."
+echo "Please delete the '.templates' folder and 'setup.sh' if you don't need it anymore."
