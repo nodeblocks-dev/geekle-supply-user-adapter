@@ -67,7 +67,7 @@ export function adapterCreated(adapter: defaultAdapter.CatalogDefaultAdapter): d
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;
