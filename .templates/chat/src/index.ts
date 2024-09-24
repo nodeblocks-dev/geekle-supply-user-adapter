@@ -1,5 +1,5 @@
 import * as sdk from "@basaldev/blocks-backend-sdk";
-import { ServiceOpts, defaultNotification, MessagingAppConfig, createNodeblocksMessagingApp } from "@basaldev/blocks-messaging-service";
+import { ServiceOpts, defaultChat, MessagingAppConfig, createNodeblocksMessagingApp } from "@basaldev/blocks-messaging-service";
 
 /**
  * Access to the configs set on the NBC dashboard based no the adapter manifest(nbc.adapter.json) by process.env
@@ -12,13 +12,13 @@ import { ServiceOpts, defaultNotification, MessagingAppConfig, createNodeblocksM
  * A hook function called before the adapter is created
  * This hook can be used to customize the adapter configs
  * 
- * @param {defaultNotification.NotificationDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
- * @param {CreateNotificationDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
- * @returns {[defaultNotification.NotificationDefaultAdapterOptions, defaultNotification.CreateNotificationDefaultAdapterDependencies]} Updated adapter options and dependencies
+ * @param {defaultChat.ChatDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
+ * @param {CreateChatDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
+ * @returns {[defaultChat.ChatDefaultAdapterOptions, defaultChat.CreateChatDefaultAdapterDependencies]} Updated adapter options and dependencies
  */
 export function beforeCreateAdapter(
-  currentOptions: defaultNotification.NotificationDefaultAdapterOptions,
-  currentDependencies: defaultNotification.CreateNotificationDefaultAdapterDependencies): [defaultNotification.NotificationDefaultAdapterOptions, defaultNotification.CreateNotificationDefaultAdapterDependencies] {
+  currentOptions: defaultChat.ChatDefaultAdapterOptions,
+  currentDependencies: defaultChat.CreateChatDefaultAdapterDependencies): [defaultChat.ChatDefaultAdapterOptions, defaultChat.CreateChatDefaultAdapterDependencies] {
   /**
    * Add new custom fields here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-custom-fields
@@ -56,10 +56,10 @@ export function beforeCreateAdapter(
  * A hook function called after the adapter is created
  * This hook can be used to customize the adapter instance
  * 
- * @param {defaultNotification.NotificationDefaultAdapter} adapter Default adapter instance
- * @returns {defaultNotification.NotificationDefaultAdapter} Updated adapter instance
+ * @param {defaultChat.ChatDefaultAdapter} adapter Default adapter instance
+ * @returns {defaultChat.ChatDefaultAdapter} Updated adapter instance
  */
-export function adapterCreated(adapter: defaultNotification.NotificationDefaultAdapter): defaultNotification.NotificationDefaultAdapter {
+export function adapterCreated(adapter: defaultChat.ChatDefaultAdapter): defaultChat.ChatDefaultAdapter {
   /**
    * Customize handlers and validators for an existing endpoint here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
@@ -67,7 +67,7 @@ export function adapterCreated(adapter: defaultNotification.NotificationDefaultA
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;

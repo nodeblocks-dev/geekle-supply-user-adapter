@@ -1,5 +1,5 @@
 import * as sdk from "@basaldev/blocks-backend-sdk";
-import { defaultAdapter, UserAppConfig, createNodeblocksUserApp } from "@basaldev/blocks-user-service";
+import { ServiceOpts, defaultAdapter, OrderAppConfig, createNodeblocksOrderApp } from "@basaldev/blocks-order-service";
 
 /**
  * Access to the configs set on the NBC dashboard based no the adapter manifest(nbc.adapter.json) by process.env
@@ -8,19 +8,17 @@ import { defaultAdapter, UserAppConfig, createNodeblocksUserApp } from "@basalde
  * const foo = process.env.ADAPTER_CUSTOM_FOO;
  */
 
-type CreateUserDefaultAdapterDependencies = Parameters<typeof defaultAdapter.createUserDefaultAdapter>[1];
-
 /**
  * A hook function called before the adapter is created
  * This hook can be used to customize the adapter configs
  * 
- * @param {defaultAdapter.UserDefaultAdapterOptions} currentOptions Adapter options set on the NBC dashboard
- * @param {CreateUserDefaultAdapterDependencies} currentDependencies Adapter dependencies set on the NBC dashboard
- * @returns {[defaultAdapter.UserDefaultAdapterOptions, CreateUserDefaultAdapterDependencies]} Updated adapter options and dependencies
+ * @param {defaultAdapter.OrderDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
+ * @param {CreateOrderDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
+ * @returns {[defaultAdapter.OrderDefaultAdapterOptions, defaultAdapter.CreateOrderDefaultAdapterDependencies]} Updated adapter options and dependencies
  */
 export function beforeCreateAdapter(
-  currentOptions: defaultAdapter.UserDefaultAdapterOptions,
-  currentDependencies: CreateUserDefaultAdapterDependencies): [defaultAdapter.UserDefaultAdapterOptions, CreateUserDefaultAdapterDependencies] {
+  currentOptions: defaultAdapter.OrderDefaultAdapterOptions,
+  currentDependencies: defaultAdapter.CreateOrderDefaultAdapterDependencies): [defaultAdapter.OrderDefaultAdapterOptions, defaultAdapter.CreateOrderDefaultAdapterDependencies] {
   /**
    * Add new custom fields here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-custom-fields
@@ -58,10 +56,10 @@ export function beforeCreateAdapter(
  * A hook function called after the adapter is created
  * This hook can be used to customize the adapter instance
  * 
- * @param {defaultAdapter.UserDefaultAdapter} adapter Default adapter instance
- * @returns {defaultAdapter.UserDefaultAdapter} Updated adapter instance
+ * @param {defaultAdapter.OrderDefaultAdapter} adapter Default adapter instance
+ * @returns {defaultAdapter.OrderDefaultAdapter} Updated adapter instance
  */
-export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defaultAdapter.UserDefaultAdapter {
+export function adapterCreated(adapter: defaultAdapter.OrderDefaultAdapter): defaultAdapter.OrderDefaultAdapter {
   /**
    * Customize handlers and validators for an existing endpoint here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
@@ -69,7 +67,7 @@ export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defa
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;
@@ -81,9 +79,9 @@ export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defa
  * A hook function called before the service is created
  * This hook can be used to customize the service configs
  * 
- * @param {UserAppConfig} currentConfigs Service configs set on the NBC dashboard
+ * @param {OrderAppConfig} currentConfigs Service configs set on the NBC dashboard
  */
-export function beforeCreateService(currentConfigs: UserAppConfig): UserAppConfig {
+export function beforeCreateService(currentConfigs: OrderAppConfig): OrderAppConfig {
   /**
    * Customize service options including CORS options here
    * 
@@ -108,8 +106,7 @@ export function beforeCreateService(currentConfigs: UserAppConfig): UserAppConfi
  */
 export function serviceCreated() {}
 
-type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksUserApp>['startService']>;
-type ServiceOpts = StartServiceArgs[0];
+type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksOrderApp>['startService']>;
 
 /**
  * A hook function called before the service is started

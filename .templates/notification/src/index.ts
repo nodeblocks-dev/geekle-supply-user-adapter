@@ -1,5 +1,5 @@
 import * as sdk from "@basaldev/blocks-backend-sdk";
-import { ServiceOptions, defaultAdapter, ReviewAppConfig, createNodeblocksReviewApp } from "@basaldev/blocks-review-service";
+import { ServiceOpts, defaultNotification, MessagingAppConfig, createNodeblocksMessagingApp } from "@basaldev/blocks-messaging-service";
 
 /**
  * Access to the configs set on the NBC dashboard based no the adapter manifest(nbc.adapter.json) by process.env
@@ -12,13 +12,13 @@ import { ServiceOptions, defaultAdapter, ReviewAppConfig, createNodeblocksReview
  * A hook function called before the adapter is created
  * This hook can be used to customize the adapter configs
  * 
- * @param {defaultAdapter.ReviewDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
- * @param {CreateReviewDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
- * @returns {[defaultAdapter.ReviewDefaultAdapterOptions, defaultAdapter.CreateReviewDefaultAdapterDependencies]} Updated adapter options and dependencies
+ * @param {defaultNotification.NotificationDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
+ * @param {CreateNotificationDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
+ * @returns {[defaultNotification.NotificationDefaultAdapterOptions, defaultNotification.CreateNotificationDefaultAdapterDependencies]} Updated adapter options and dependencies
  */
 export function beforeCreateAdapter(
-  currentOptions: defaultAdapter.ReviewDefaultAdapterOptions,
-  currentDependencies: defaultAdapter.CreateReviewDefaultAdapterDependencies): [defaultAdapter.ReviewDefaultAdapterOptions, defaultAdapter.CreateReviewDefaultAdapterDependencies] {
+  currentOptions: defaultNotification.NotificationDefaultAdapterOptions,
+  currentDependencies: defaultNotification.CreateNotificationDefaultAdapterDependencies): [defaultNotification.NotificationDefaultAdapterOptions, defaultNotification.CreateNotificationDefaultAdapterDependencies] {
   /**
    * Add new custom fields here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-custom-fields
@@ -56,10 +56,10 @@ export function beforeCreateAdapter(
  * A hook function called after the adapter is created
  * This hook can be used to customize the adapter instance
  * 
- * @param {defaultAdapter.ReviewDefaultAdapter} adapter Default adapter instance
- * @returns {defaultAdapter.ReviewDefaultAdapter} Updated adapter instance
+ * @param {defaultNotification.NotificationDefaultAdapter} adapter Default adapter instance
+ * @returns {defaultNotification.NotificationDefaultAdapter} Updated adapter instance
  */
-export function adapterCreated(adapter: defaultAdapter.ReviewDefaultAdapter): defaultAdapter.ReviewDefaultAdapter {
+export function adapterCreated(adapter: defaultNotification.NotificationDefaultAdapter): defaultNotification.NotificationDefaultAdapter {
   /**
    * Customize handlers and validators for an existing endpoint here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
@@ -67,7 +67,7 @@ export function adapterCreated(adapter: defaultAdapter.ReviewDefaultAdapter): de
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;
@@ -79,9 +79,9 @@ export function adapterCreated(adapter: defaultAdapter.ReviewDefaultAdapter): de
  * A hook function called before the service is created
  * This hook can be used to customize the service configs
  * 
- * @param {ReviewAppConfig} currentConfigs Service configs set on the NBC dashboard
+ * @param {MessagingAppConfig} currentConfigs Service configs set on the NBC dashboard
  */
-export function beforeCreateService(currentConfigs: ReviewAppConfig): ReviewAppConfig {
+export function beforeCreateService(currentConfigs: MessagingAppConfig): MessagingAppConfig {
   /**
    * Customize service options including CORS options here
    * 
@@ -106,7 +106,7 @@ export function beforeCreateService(currentConfigs: ReviewAppConfig): ReviewAppC
  */
 export function serviceCreated() {}
 
-type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksReviewApp>['startService']>;
+type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksMessagingApp>['startService']>;
 
 /**
  * A hook function called before the service is started
@@ -115,7 +115,7 @@ type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksReviewApp>[
  * @param {ServiceOpts} currentOptions Service options
  * @returns {StartServiceArgs} Updated service start args
  */
-export function beforeStartService(currentOptions: ServiceOptions): StartServiceArgs {
+export function beforeStartService(currentOptions: ServiceOpts): StartServiceArgs {
   /**
    * Add new api endpoints here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-api-endpoints

@@ -1,5 +1,5 @@
 import * as sdk from "@basaldev/blocks-backend-sdk";
-import { ServiceOpts, defaultAdapter, OrderAppConfig, createNodeblocksOrderApp } from "@basaldev/blocks-order-service";
+import { ServiceOptions, defaultAdapter, ReviewAppConfig, createNodeblocksReviewApp } from "@basaldev/blocks-review-service";
 
 /**
  * Access to the configs set on the NBC dashboard based no the adapter manifest(nbc.adapter.json) by process.env
@@ -12,13 +12,13 @@ import { ServiceOpts, defaultAdapter, OrderAppConfig, createNodeblocksOrderApp }
  * A hook function called before the adapter is created
  * This hook can be used to customize the adapter configs
  * 
- * @param {defaultAdapter.OrderDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
- * @param {CreateOrderDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
- * @returns {[defaultAdapter.OrderDefaultAdapterOptions, defaultAdapter.CreateOrderDefaultAdapterDependencies]} Updated adapter options and dependencies
+ * @param {defaultAdapter.ReviewDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
+ * @param {CreateReviewDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
+ * @returns {[defaultAdapter.ReviewDefaultAdapterOptions, defaultAdapter.CreateReviewDefaultAdapterDependencies]} Updated adapter options and dependencies
  */
 export function beforeCreateAdapter(
-  currentOptions: defaultAdapter.OrderDefaultAdapterOptions,
-  currentDependencies: defaultAdapter.CreateOrderDefaultAdapterDependencies): [defaultAdapter.OrderDefaultAdapterOptions, defaultAdapter.CreateOrderDefaultAdapterDependencies] {
+  currentOptions: defaultAdapter.ReviewDefaultAdapterOptions,
+  currentDependencies: defaultAdapter.CreateReviewDefaultAdapterDependencies): [defaultAdapter.ReviewDefaultAdapterOptions, defaultAdapter.CreateReviewDefaultAdapterDependencies] {
   /**
    * Add new custom fields here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-custom-fields
@@ -56,10 +56,10 @@ export function beforeCreateAdapter(
  * A hook function called after the adapter is created
  * This hook can be used to customize the adapter instance
  * 
- * @param {defaultAdapter.OrderDefaultAdapter} adapter Default adapter instance
- * @returns {defaultAdapter.OrderDefaultAdapter} Updated adapter instance
+ * @param {defaultAdapter.ReviewDefaultAdapter} adapter Default adapter instance
+ * @returns {defaultAdapter.ReviewDefaultAdapter} Updated adapter instance
  */
-export function adapterCreated(adapter: defaultAdapter.OrderDefaultAdapter): defaultAdapter.OrderDefaultAdapter {
+export function adapterCreated(adapter: defaultAdapter.ReviewDefaultAdapter): defaultAdapter.ReviewDefaultAdapter {
   /**
    * Customize handlers and validators for an existing endpoint here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
@@ -67,7 +67,7 @@ export function adapterCreated(adapter: defaultAdapter.OrderDefaultAdapter): def
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;
@@ -79,9 +79,9 @@ export function adapterCreated(adapter: defaultAdapter.OrderDefaultAdapter): def
  * A hook function called before the service is created
  * This hook can be used to customize the service configs
  * 
- * @param {OrderAppConfig} currentConfigs Service configs set on the NBC dashboard
+ * @param {ReviewAppConfig} currentConfigs Service configs set on the NBC dashboard
  */
-export function beforeCreateService(currentConfigs: OrderAppConfig): OrderAppConfig {
+export function beforeCreateService(currentConfigs: ReviewAppConfig): ReviewAppConfig {
   /**
    * Customize service options including CORS options here
    * 
@@ -106,7 +106,7 @@ export function beforeCreateService(currentConfigs: OrderAppConfig): OrderAppCon
  */
 export function serviceCreated() {}
 
-type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksOrderApp>['startService']>;
+type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksReviewApp>['startService']>;
 
 /**
  * A hook function called before the service is started
@@ -115,7 +115,7 @@ type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksOrderApp>['
  * @param {ServiceOpts} currentOptions Service options
  * @returns {StartServiceArgs} Updated service start args
  */
-export function beforeStartService(currentOptions: ServiceOpts): StartServiceArgs {
+export function beforeStartService(currentOptions: ServiceOptions): StartServiceArgs {
   /**
    * Add new api endpoints here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-api-endpoints

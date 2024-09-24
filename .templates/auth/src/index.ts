@@ -1,5 +1,5 @@
 import * as sdk from "@basaldev/blocks-backend-sdk";
-import { ServiceOpts, defaultAdapter, OrganizationAppConfig, createNodeblocksOrganizationApp } from "@basaldev/blocks-organization-service";
+import { defaultAdapter, AuthAppConfig, ServiceOptsWithOAuth } from "@basaldev/blocks-auth-service";
 
 /**
  * Access to the configs set on the NBC dashboard based no the adapter manifest(nbc.adapter.json) by process.env
@@ -12,13 +12,13 @@ import { ServiceOpts, defaultAdapter, OrganizationAppConfig, createNodeblocksOrg
  * A hook function called before the adapter is created
  * This hook can be used to customize the adapter configs
  * 
- * @param {defaultAdapter.OrganizationDefaultAdapterOptions} adapterOptions Adapter options set on the NBC dashboard
- * @param {CreateOrganizationDefaultAdapterDependencies} adapterDependencies Adapter dependencies set on the NBC dashboard
- * @returns {[defaultAdapter.OrganizationDefaultAdapterOptions, defaultAdapter.CreateOrganizationDefaultAdapterDependencies]} Updated adapter options and dependencies
+ * @param {defaultAdapter.AuthDefaultAdapterOptions} currentOptions Adapter options set on the NBC dashboard
+ * @param {defaultAdapter.CreateAuthDefaultAdapterDependences} currentDependencies Adapter dependencies set on the NBC dashboard
+ * @returns {[defaultAdapter.AuthDefaultAdapterOptions, defaultAdapter.CreateAuthDefaultAdapterDependences]} Updated adapter options and dependencies
  */
 export function beforeCreateAdapter(
-  currentOptions: defaultAdapter.OrganizationDefaultAdapterOptions,
-  currentDependencies: defaultAdapter.CreateOrganizationDefaultAdapterDependencies): [defaultAdapter.OrganizationDefaultAdapterOptions, defaultAdapter.CreateOrganizationDefaultAdapterDependencies] {
+  currentOptions: defaultAdapter.AuthDefaultAdapterOptions,
+  currentDependencies: defaultAdapter.CreateAuthDefaultAdapterDependences): [defaultAdapter.AuthDefaultAdapterOptions, defaultAdapter.CreateAuthDefaultAdapterDependences] {
   /**
    * Add new custom fields here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-custom-fields
@@ -56,10 +56,10 @@ export function beforeCreateAdapter(
  * A hook function called after the adapter is created
  * This hook can be used to customize the adapter instance
  * 
- * @param {defaultAdapter.OrganizationDefaultAdapter} adapter Default adapter instance
- * @returns {defaultAdapter.OrganizationDefaultAdapter} Updated adapter instance
+ * @param {defaultAdapter.AuthDefaultAdapter} adapter Default adapter instance
+ * @returns {defaultAdapter.AuthDefaultAdapter} Updated adapter instance
  */
-export function adapterCreated(adapter: defaultAdapter.OrganizationDefaultAdapter): defaultAdapter.OrganizationDefaultAdapter {
+export function adapterCreated(adapter: defaultAdapter.AuthDefaultAdapter): defaultAdapter.AuthDefaultAdapter {
   /**
    * Customize handlers and validators for an existing endpoint here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#customizing-handlers-and-validators-for-an-existing-endpoint
@@ -67,7 +67,7 @@ export function adapterCreated(adapter: defaultAdapter.OrganizationDefaultAdapte
    * @example
    * const updatedAdapter = sdk.adapter.setValidator(adapter, 'createUser', 'nameUnique', async (logger, context) => {
    *   ...
-   *   return { status: 200 };
+   *   return sdk.util.StatusCodes.OK;
    * });
    */
   const updatedAdapter = adapter;
@@ -79,9 +79,9 @@ export function adapterCreated(adapter: defaultAdapter.OrganizationDefaultAdapte
  * A hook function called before the service is created
  * This hook can be used to customize the service configs
  * 
- * @param {OrganizationAppConfig} currentConfigs Service configs set on the NBC dashboard
+ * @param {AuthAppConfig} currentConfigs Service configs set on the NBC dashboard
  */
-export function beforeCreateService(currentConfigs: OrganizationAppConfig): OrganizationAppConfig {
+export function beforeCreateService(currentConfigs: AuthAppConfig): AuthAppConfig {
   /**
    * Customize service options including CORS options here
    * 
@@ -106,16 +106,14 @@ export function beforeCreateService(currentConfigs: OrganizationAppConfig): Orga
  */
 export function serviceCreated() {}
 
-type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksOrganizationApp>['startService']>;
-
 /**
  * A hook function called before the service is started
  * This hook can be used to customize the options for starting the service
  * 
- * @param {ServiceOpts} currentOptions Service options
- * @returns {StartServiceArgs} Updated service start args
+ * @param {ServiceOptsWithOAuth} currentOptions Service options
+ * @returns {ServiceOptsWithOAuth} Updated service options
  */
-export function beforeStartService(currentOptions: ServiceOpts): StartServiceArgs {
+export function beforeStartService(currentOptions: ServiceOptsWithOAuth): [ServiceOptsWithOAuth] {
   /**
    * Add new api endpoints here
    * https://docs.nodeblocks.dev/docs/how-tos/customization/customizing-adapters#adding-new-api-endpoints
@@ -147,6 +145,7 @@ export function beforeStartService(currentOptions: ServiceOpts): StartServiceArg
   const updatedOptions = {
     ...currentOptions,
   };
+
   return [updatedOptions];
 }
 
