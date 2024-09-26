@@ -16,7 +16,7 @@
     "@basaldev/blocks-organization-service": "^3.0.3"
   },
   "devDependencies": {
-    "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.4.0",
     "typescript": "^5.4.5"
   }
 }

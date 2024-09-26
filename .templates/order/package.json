@@ -16,7 +16,7 @@
     "@basaldev/blocks-order-service": "^2.4.1"
   },
   "devDependencies": {
-    "@basaldev/nodeblocks-cloud-sdk": "^0.2.5",
+    "@basaldev/nodeblocks-cloud-sdk": "^0.4.0",
     "typescript": "^5.4.5"
   }
 }
