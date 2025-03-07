@@ -1,0 +1,127 @@
+import * as sdk from "@basaldev/blocks-backend-sdk";
+import { defaultAdapter, UserAppConfig, createNodeblocksUserApp } from "@basaldev/blocks-user-service";
+import { changePasswordTemplate } from "./emails/templates/changePassword";
+import { verifyChangeEmailTemplate } from "./emails/templates/verifyChangeEmail";
+import { sendResetPasswordEmailTemplate } from "./emails/templates/sendResetPasswordEmail";
+import { inviteUserTemplate } from "./emails/templates/inviteUser";
+import { deactivateUserTemplate } from "./emails/templates/deactivateUser";
+import { setValidators } from "./validators";
+
+type CreateUserDefaultAdapterDependencies = Parameters<typeof defaultAdapter.createUserDefaultAdapter>[1];
+
+export function beforeCreateAdapter(
+  currentOptions: defaultAdapter.UserDefaultAdapterOptions,
+  currentDependencies: CreateUserDefaultAdapterDependencies): [defaultAdapter.UserDefaultAdapterOptions, CreateUserDefaultAdapterDependencies] {
+
+  const updatedOptions: defaultAdapter.UserDefaultAdapterOptions = {
+    ...currentOptions,
+    authenticate: sdk.security.defaultBearerAuth,
+    collectionNames: {
+      attachment: 'supply_user_attachments',
+      follower: 'supply_user',
+      invitation: 'supply_user_invitations',
+      preference: 'supply_user_preferences',
+      users: 'supply_users',
+    },
+    emailConfig: {
+      inviteUser: {
+        template: {
+          bodyTemplate: inviteUserTemplate.vendor.bodyTemplate,
+          subject: inviteUserTemplate.vendor.subject,
+          urlTemplate: inviteUserTemplate.vendor.urlTemplate
+        },
+        enabled: inviteUserTemplate.enabled
+      },
+      deactivateUser: {
+        template: {
+          bodyTemplate: deactivateUserTemplate.vendor.bodyTemplate,
+          subject: deactivateUserTemplate.vendor.subject,
+          urlTemplate: deactivateUserTemplate.vendor.urlTemplate
+        },
+        enabled: deactivateUserTemplate.enabled
+      },
+      changePassword: {
+        vendorTemplate: {
+          bodyTemplate: changePasswordTemplate.vendor.bodyTemplate,
+          subject: changePasswordTemplate.vendor.subject,
+          urlTemplate: changePasswordTemplate.vendor.urlTemplate
+        },
+        enabled: changePasswordTemplate.enabled
+      },
+      verifyChangeEmail: {
+        vendorTemplate: {
+          bodyTemplate: verifyChangeEmailTemplate.vendor.bodyTemplate,
+          subject: verifyChangeEmailTemplate.vendor.subject,
+          urlTemplate: verifyChangeEmailTemplate.vendor.urlTemplate
+        },
+        enabled: verifyChangeEmailTemplate.enabled
+      },
+      sendResetPasswordEmail: {
+        vendorTemplate: {
+          bodyTemplate: sendResetPasswordEmailTemplate.vendor.bodyTemplate,
+          subject: sendResetPasswordEmailTemplate.vendor.subject,
+          urlTemplate: sendResetPasswordEmailTemplate.vendor.urlTemplate
+        },
+        enabled: sendResetPasswordEmailTemplate.enabled
+      },
+    }
+  };
+
+  const updatedDependencies: CreateUserDefaultAdapterDependencies = {
+    ...currentDependencies
+  };
+
+  return [updatedOptions, updatedDependencies];
+}
+
+export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defaultAdapter.UserDefaultAdapter {
+  const updatedAdapter: defaultAdapter.UserDefaultAdapter = sdk.adapter.setEnabledAdapterMethods(adapter, [
+    'acceptInvitation',
+    'createUser',
+    'updateUser',
+    'getUser',
+    'listUsers',
+    'resetPassword',
+    'sendResetPasswordEmail',
+    'sendVerificationEmail',
+    'verifyEmail',
+    'acceptInvitation',
+    'createInvitation',
+    'deleteInvitation',
+    'listInvitations',
+    'changeUserEmail',
+    'changeUserPassword',
+    'verifyChangeEmail',
+    'listUsers',
+    'checkUserPassword',
+    'createUser',
+    'createUserForAdmin',
+    'listAttachments',
+    'lockUser',
+    'unlockUser',
+  ]);
+
+  return setValidators(updatedAdapter);
+}
+
+export function beforeCreateService(currentConfigs: UserAppConfig): UserAppConfig {
+  const updatedConfigs: UserAppConfig = {
+    ...currentConfigs
+  };
+
+  return updatedConfigs;
+}
+
+export function serviceCreated() {}
+
+type StartServiceArgs = Parameters<ReturnType<typeof createNodeblocksUserApp>['startService']>;
+type ServiceOpts = StartServiceArgs[0];
+
+export function beforeStartService(currentOptions: ServiceOpts): StartServiceArgs {
+  const updatedOptions: ServiceOpts = {
+    ...currentOptions,
+  };
+  return [updatedOptions];
+}
+
+export function serviceStarted() {}
