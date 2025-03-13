@@ -3,6 +3,18 @@
 <h1 align="center">Nodeblocks Custom Adapter Templates</h1>
 <p align="center">Templates for creating the custom adapter of Nodeblocks services on Nodeblocks Cloud</p>
 
+## 📖 Geekle Adapter basic NBC setup
+- Setup CORS credentials if needed. To allow any origin use `^.*$` regex
+- Enable compression
+- Enable cookies parser
+- Set `Authentication encrypt` and `Authentication sign secret` for all adapters
+- Set `Database endpoint`
+- Set `SendGrid API key` and `Sender email address`
+- Enable `Enabling change password`, `Enabling invite user`, `Enabling reset password`, `Enabling Send Reset`, `Enabling Verify Change`. 
+  - All needed email templates could be found inside the `src/emails/templates`, so you do not need to setup this
+- Set `Supply site URL`
+- Set `Organization Service Endpoint`
+
 ## 📖 Table of Contents
 - [Introduction](#🔰-introduction)
 - [Features](#✨-features)
