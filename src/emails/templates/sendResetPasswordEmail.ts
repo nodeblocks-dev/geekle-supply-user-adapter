@@ -4,16 +4,19 @@ export const sendResetPasswordEmailTemplate = {
   vendor: {
     bodyTemplate: `
       <p>Geekleをご利用いただきありがとうございます。</p>
-      <p>下記のURLよりパスワードの再設定を行なってください。</p>
-      <p><a href="\${url}">\${url}</a></p>
-      <p>*※本メールは送信専用のメールアドレスで送信しております。</p>
-      <p>本メールにご返信いただいてもお答えできません。あらかじめご了承ください。</p>
-      <br />
-      <p>Geekle</p>
-      <a href="${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}">${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}</a>
-      <br />
-      <br />
-      <p>運営会社 Geekle</p>
+      <p>このメールはパスワードの再設定を依頼された方にお送りしています。</p>
+
+      <p><a href="\${url}">[パスワード設定URL]</a></p>
+
+      <p>パスワードの設定は、このメールの受信から24時間以内に実施してください。</p>
+      
+      <p>本メールは送信専用のアドレスです。</p>
+      <p>このメールに心当たりがない場合は、お問い合わせください。</p>
+
+      <p>-------------------</p>
+      <p>Geekle 運営事務局</p>
+      <p>141-0021 東京都品川区上大崎2-15-19</p>
+      <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
     subject: 'パスワードの再設定',
     urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/auth/reset-password-submit/` + '${token}'
