@@ -10,6 +10,14 @@
       "name": "ADAPTER_CUSTOM_SUPPLY_SITE_URL",
       "required": true,
       "defaultValue": ""
+    },
+    {
+      "displayName": "NPM KEY",
+      "description": "NPM KEY for the organization",
+      "type": "string",
+      "name": "BASALDEV_AUTH_TOKEN",
+      "required": true,
+      "defaultValue": ""
     }
   ]
 }
