@@ -6,6 +6,7 @@ import { sendResetPasswordEmailTemplate } from "./emails/templates/sendResetPass
 import { inviteUserTemplate } from "./emails/templates/inviteUser";
 import { deactivateUserTemplate } from "./emails/templates/deactivateUser";
 import { setValidators } from "./validators";
+import { setEmailHandlers } from "./emails";
 
 type CreateUserDefaultAdapterDependencies = Parameters<typeof defaultAdapter.createUserDefaultAdapter>[1];
 
@@ -74,8 +75,8 @@ export function beforeCreateAdapter(
   return [updatedOptions, updatedDependencies];
 }
 
-export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defaultAdapter.UserDefaultAdapter {
-  const updatedAdapter: defaultAdapter.UserDefaultAdapter = sdk.adapter.setEnabledAdapterMethods(adapter, [
+export async function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): Promise<defaultAdapter.UserDefaultAdapter> {
+  let updatedAdapter: defaultAdapter.UserDefaultAdapter = sdk.adapter.setEnabledAdapterMethods(adapter, [
     'acceptInvitation',
     'createUser',
     'updateUser',
@@ -100,6 +101,8 @@ export function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter): defa
     'lockUser',
     'unlockUser',
   ]);
+
+  updatedAdapter = await setEmailHandlers(updatedAdapter);
 
   return setValidators(updatedAdapter);
 }
