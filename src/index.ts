@@ -48,7 +48,7 @@ export function beforeCreateAdapter(
           subject: changePasswordTemplate.vendor.subject,
           urlTemplate: changePasswordTemplate.vendor.urlTemplate
         },
-        adminTemplate: {
+        vendorTemplate: {
           bodyTemplate: changePasswordTemplate.vendor.bodyTemplate,
           subject: changePasswordTemplate.vendor.subject,
           urlTemplate: changePasswordTemplate.vendor.urlTemplate
