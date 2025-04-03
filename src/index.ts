@@ -42,7 +42,13 @@ export function beforeCreateAdapter(
         enabled: deactivateUserTemplate.enabled
       },
       changePassword: {
-        vendorTemplate: {
+        //todo: wait fix from @Marty, here is should be an admin template
+        customerTemplate: {
+          bodyTemplate: changePasswordTemplate.vendor.bodyTemplate,
+          subject: changePasswordTemplate.vendor.subject,
+          urlTemplate: changePasswordTemplate.vendor.urlTemplate
+        },
+        adminTemplate: {
           bodyTemplate: changePasswordTemplate.vendor.bodyTemplate,
           subject: changePasswordTemplate.vendor.subject,
           urlTemplate: changePasswordTemplate.vendor.urlTemplate
