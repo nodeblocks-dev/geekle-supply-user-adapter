@@ -19,7 +19,7 @@ export const verifyChangeEmailTemplate = {
       <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
     subject: '[Geekle] メールアドレスの変更を行います',
-    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_ADMIN_SITE_URL')}/settings/verify-change-email-success/` + '${token}'
+    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/settings/verify-change-email-success/` + '${token}'
   },
   enabled: getEnvBool('ADAPTER_EMAIL_VERIFY_CHANGE_EMAIL_ENABLED')
 }
