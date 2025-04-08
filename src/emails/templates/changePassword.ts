@@ -8,7 +8,7 @@ export const changePasswordTemplate = {
       <br />
       <p>この変更に覚えがない場合は、速やかに以下のリンクからパスワードを再設定してください</p>
       <br />
-      <a href="${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-request">[メールアドレス変更URL]</a>
+      <a href="${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-request">[パスワード変更URL]</a>
       <br />
       <br />
       <p>本メールは送信専用のアドレスです。</p>
