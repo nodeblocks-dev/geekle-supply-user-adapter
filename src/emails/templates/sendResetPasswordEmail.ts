@@ -5,7 +5,7 @@ export const sendResetPasswordEmailTemplate = {
     bodyTemplate: `
       <p>Geekleをご利用いただきありがとうございます。</p>
       <p>このメールはパスワードの再設定を依頼された方にお送りしています。</p>
-
+      <p>以下のURLをクリックして、新しいパスワードを設定してください。</p>
       <p><a href="\${url}">[パスワード設定URL]</a></p>
 
       <p>パスワードの設定は、このメールの受信から24時間以内に実施してください。</p>
