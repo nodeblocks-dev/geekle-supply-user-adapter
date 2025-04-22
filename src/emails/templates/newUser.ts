@@ -6,8 +6,8 @@ export const newUserTemplate = {
             <p>Geekleをご利用いただきありがとうございます。</p>
             <p>Geekleの管理者登録手続きが完了しました。</p>
 
-            <p>登録メールアドレス:{{email}}</p>
-            <p><a href="${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}">[デマンドサイトホームURL]</a> から求人を探してみましょう!</p>
+            <p>登録メールアドレス: {{email}}</p>
+            <p>管理者向けサイト: <a href="${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}">[サプライサイトホームURL]</a></p>
 
             <p>本メールは送信専用のアドレスです。</p>
             <p>このメールに心当たりがない場合は、お問い合わせください。</p>
