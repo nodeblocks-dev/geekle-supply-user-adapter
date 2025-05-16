@@ -19,7 +19,7 @@ export const sendResetPasswordEmailTemplate = {
       <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
     subject: 'パスワードの再設定',
-    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-submit/` + '${token}'
+    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-submit/` + '${token}?email=${email}'
   },
   enabled: getEnvBool('ADAPTER_EMAIL_RESET_PASSWORD_ENABLED')
 };
