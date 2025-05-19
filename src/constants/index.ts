@@ -1,0 +1,1 @@
+export const ONETIME_TOKEN_LIFETIME = 1; // 1 day

@@ -1,4 +1,5 @@
-import { getEnvBool, getEnvString } from "../../helpers";
+import { ONETIME_TOKEN_LIFETIME } from "../../constants";
+import { getEnvBool, getEnvString, getExpiredDate } from "../../helpers";
 
 export const sendResetPasswordEmailTemplate = {
   vendor: {
@@ -19,7 +20,7 @@ export const sendResetPasswordEmailTemplate = {
       <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
     subject: 'パスワードの再設定',
-    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-submit/` + '${token}?email=${email}'
+    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-submit/` + '${token}?email=${email}' + `&expiredAt=${getExpiredDate(ONETIME_TOKEN_LIFETIME)}`
   },
   enabled: getEnvBool('ADAPTER_EMAIL_RESET_PASSWORD_ENABLED')
 };

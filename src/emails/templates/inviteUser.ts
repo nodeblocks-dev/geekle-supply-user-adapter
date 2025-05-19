@@ -1,4 +1,5 @@
-import { getEnvBool, getEnvString } from "../../helpers";
+import { ONETIME_TOKEN_LIFETIME } from "../../constants";
+import { getEnvBool, getEnvString, getExpiredDate } from "../../helpers";
 
 export const inviteUserTemplate = {
   vendor: {
@@ -17,7 +18,7 @@ export const inviteUserTemplate = {
       <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
     subject: '[Geekle] アカウントの登録を行います',
-    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL', '')}` + '/auth/accept-invitation/${invitationId}/${token}?email=${email}'
+    urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL', '')}` + '/auth/accept-invitation/${invitationId}/${token}?email=${email}' + `&expiredAt=${getExpiredDate(ONETIME_TOKEN_LIFETIME)}`
   },
   enabled: getEnvBool('ADAPTER_EMAIL_INVITE_USER_ENABLED')
 };

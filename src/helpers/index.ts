@@ -18,5 +18,7 @@ export function getEnvBool(name: string, defaultValue = false): boolean {
   return value === 'true' || value === true;
 }
 
-  
-  
+export const getExpiredDate = (days: number) => {
+  const now = new Date();
+  return now.getTime() + days * 24 * 60 * 60 * 1000;
+}
