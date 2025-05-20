@@ -24,6 +24,15 @@ export function beforeCreateAdapter(
       preference: 'supply_user_preferences',
       users: 'supply_users',
     },
+    customStrategies: {
+      passwordValidateStrategy: (user) => {
+        const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
+        if (!regex.test(user.password)) {
+          return false;
+        }
+        return true;
+      }
+    },
     emailConfig: {
       inviteUser: {
         template: {
