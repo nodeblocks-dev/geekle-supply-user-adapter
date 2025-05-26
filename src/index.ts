@@ -32,7 +32,7 @@ export function beforeCreateAdapter(
     customStrategies: {
       passwordValidateStrategy: (user) => {
         const decodedPassword = decodeHtmlEntities(user.password);
-        const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-=])[a-zA-Z0-9!@#$%^&*()_+-=]{8,64}$/)
+        const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
         if (!regex.test(decodedPassword)) {
           return false;
         }
