@@ -26,10 +26,13 @@ export function beforeCreateAdapter(
     },
     customStrategies: {
       passwordValidateStrategy: (user) => {
+        console.log('user', user);
         const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
         if (!regex.test(user.password)) {
+          console.log('password is not valid');
           return false;
         }
+        console.log('password is valid');
         return true;
       }
     },
