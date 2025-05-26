@@ -12,34 +12,7 @@ type CreateUserDefaultAdapterDependencies = Parameters<typeof defaultAdapter.cre
 
 // Function to decode HTML entities
 function decodeHtmlEntities(text: string): string {
-  const htmlEntities: { [key: string]: string } = {
-    '&amp;': '&',
-    '&lt;': '<',
-    '&gt;': '>',
-    '&quot;': '"',
-    '&#x27;': "'",
-    '&#x2F;': '/',
-    '&#x60;': '`',
-    '&#x3D;': '=',
-    '&#x2A;': '*',
-    '&#x28;': '(',
-    '&#x29;': ')',
-    '&#x5F;': '_',
-    '&#x2B;': '+',
-    '&#x5C;': '\\',
-    '&#x2D;': '-',
-    '&#x21;': '!',
-    '&#x40;': '@',
-    '&#x23;': '#',
-    '&#x24;': '$',
-    '&#x25;': '%',
-    '&#x5E;': '^',
-    '&#x26;': '&',
-  };
-  
-  return text.replace(/&[a-zA-Z0-9#]+;/g, (entity) => {
-    return htmlEntities[entity] || entity;
-  });
+  return text.replace(/&amp;/g, '&')
 }
 
 export function beforeCreateAdapter(
@@ -59,7 +32,7 @@ export function beforeCreateAdapter(
     customStrategies: {
       passwordValidateStrategy: (user) => {
         const decodedPassword = decodeHtmlEntities(user.password);
-        const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
+        const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+-=])[a-zA-Z0-9!@#$%^&*()_+-=]{8,64}$/)
         if (!regex.test(decodedPassword)) {
           return false;
         }
