@@ -10,6 +10,24 @@ import { setEmailHandlers } from "./emails";
 
 type CreateUserDefaultAdapterDependencies = Parameters<typeof defaultAdapter.createUserDefaultAdapter>[1];
 
+// Function to decode HTML entities
+function decodeHtmlEntities(text: string): string {
+  const htmlEntities: { [key: string]: string } = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#x27;': "'",
+    '&#x2F;': '/',
+    '&#x60;': '`',
+    '&#x3D;': '='
+  };
+  
+  return text.replace(/&[a-zA-Z0-9#]+;/g, (entity) => {
+    return htmlEntities[entity] || entity;
+  });
+}
+
 export function beforeCreateAdapter(
   currentOptions: defaultAdapter.UserDefaultAdapterOptions,
   currentDependencies: CreateUserDefaultAdapterDependencies): [defaultAdapter.UserDefaultAdapterOptions, CreateUserDefaultAdapterDependencies] {
@@ -26,9 +44,12 @@ export function beforeCreateAdapter(
     },
     customStrategies: {
       passwordValidateStrategy: (user) => {
-        console.log('user', user);
+        // Decode HTML entities from password
+        const decodedPassword = decodeHtmlEntities(user.password);
+        console.log('user', { ...user, password: decodedPassword });
+        
         const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
-        if (!regex.test(user.password)) {
+        if (!regex.test(decodedPassword)) {
           console.log('password is not valid');
           return false;
         }
