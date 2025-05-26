@@ -44,16 +44,11 @@ export function beforeCreateAdapter(
     },
     customStrategies: {
       passwordValidateStrategy: (user) => {
-        // Decode HTML entities from password
         const decodedPassword = decodeHtmlEntities(user.password);
-        console.log('user', { ...user, password: decodedPassword });
-        
         const regex = new RegExp(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=])[a-zA-Z0-9!@#$%^&*()_+\-=]{8,64}$/)
         if (!regex.test(decodedPassword)) {
-          console.log('password is not valid');
           return false;
         }
-        console.log('password is valid');
         return true;
       }
     },
