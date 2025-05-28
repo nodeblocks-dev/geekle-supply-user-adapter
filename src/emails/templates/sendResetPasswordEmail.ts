@@ -19,7 +19,7 @@ export const sendResetPasswordEmailTemplate = {
       <p>141-0021 東京都品川区上大崎2-15-19</p>
       <p>お問い合わせ メールアドレス ： contact@geekle.com</p>
     `,
-    subject: 'パスワードの再設定',
+    subject: '[Geekle] 新しいパスワードを設定します',
     urlTemplate: `${getEnvString('ADAPTER_CUSTOM_SUPPLY_SITE_URL')}/reset-password-submit/` + '${token}?email=${email}' + `&expiredAt=${getExpiredDate(ONETIME_TOKEN_LIFETIME)}`
   },
   enabled: getEnvBool('ADAPTER_EMAIL_RESET_PASSWORD_ENABLED')
