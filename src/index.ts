@@ -46,7 +46,8 @@ export function beforeCreateAdapter(
           subject: inviteUserTemplate.vendor.subject,
           urlTemplate: inviteUserTemplate.vendor.urlTemplate
         },
-        enabled: inviteUserTemplate.enabled
+        // enabled: inviteUserTemplate.enabled
+        enabled: true
       },
       deactivateUser: {
         template: {
@@ -54,7 +55,8 @@ export function beforeCreateAdapter(
           subject: deactivateUserTemplate.vendor.subject,
           urlTemplate: deactivateUserTemplate.vendor.urlTemplate
         },
-        enabled: deactivateUserTemplate.enabled
+        // enabled: deactivateUserTemplate.enabled
+        enabled: true
       },
       changePassword: {
         //todo: wait fix from @Marty, here is should be an admin template
@@ -68,7 +70,8 @@ export function beforeCreateAdapter(
           subject: changePasswordTemplate.vendor.subject,
           urlTemplate: changePasswordTemplate.vendor.urlTemplate
         },
-        enabled: changePasswordTemplate.enabled
+        // enabled: changePasswordTemplate.enabled
+        enabled: true
       },
       verifyChangeEmail: {
         vendorTemplate: {
@@ -76,7 +79,8 @@ export function beforeCreateAdapter(
           subject: verifyChangeEmailTemplate.vendor.subject,
           urlTemplate: verifyChangeEmailTemplate.vendor.urlTemplate
         },
-        enabled: verifyChangeEmailTemplate.enabled
+        // enabled: verifyChangeEmailTemplate.enabled
+        enabled: true
       },
       sendResetPasswordEmail: {
         vendorTemplate: {
@@ -84,7 +88,8 @@ export function beforeCreateAdapter(
           subject: sendResetPasswordEmailTemplate.vendor.subject,
           urlTemplate: sendResetPasswordEmailTemplate.vendor.urlTemplate
         },
-        enabled: sendResetPasswordEmailTemplate.enabled
+        // enabled: sendResetPasswordEmailTemplate.enabled
+        enabled: true
       },
     }
   };
@@ -130,7 +135,9 @@ export async function adapterCreated(adapter: defaultAdapter.UserDefaultAdapter)
 
 export function beforeCreateService(currentConfigs: UserAppConfig): UserAppConfig {
   const updatedConfigs: UserAppConfig = {
-    ...currentConfigs
+    ...currentConfigs,
+    enableCompression: true,
+    enableCookieParser: true,
   };
 
   return updatedConfigs;
